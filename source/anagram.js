@@ -18,7 +18,7 @@ const strSort = (a, b) => {
  * @param {string} el - слово
  */
 const getAnagramArr = (acc, el) => {
-    const formatEl = el.split('').sort().join('');
+    const formatEl = el?.split('').sort().join('');
     if (acc[1].has(formatEl)) {
         acc[0][acc[1].get(formatEl)].push(el);
     } else {
@@ -49,4 +49,4 @@ const filterAndSortAnagrams = (acc, el) => {
 const anagram = (words) =>
     Array.isArray(words)
         ? words.reduce(getAnagramArr, [[], new Map()])[0].reduce(filterAndSortAnagrams, []).sort(strSort)
-        : null;
+        : [];

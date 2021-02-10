@@ -18,43 +18,19 @@ QUnit.module('Тестируем функцию anagram', function () {
 		assert.deepEqual(anagram(input), output);
 	});
 
-	QUnit.test('Проверка при входном значении null', function (assert) {
-		const input = null;
-
-		const output = [];
-
-		assert.deepEqual(anagram(input), output);
-	});
-
-	QUnit.test('Проверка при входном значении string', function (assert) {
-		const input = 'null';
-
-		const output = [];
-
-		assert.deepEqual(anagram(input), output);
-	});
-
-	QUnit.test('Проверка при входном значении пустого массива', function (assert) {
-		const input = [];
-
-		const output = [];
-
-		assert.deepEqual(anagram(input), output);
-	});
-
-	QUnit.test('Проверка при входном значении массива с null', function (assert) {
-		const input = [null];
-
-		const output = [];
-
-		assert.deepEqual(anagram(input), output);
-	});
-
-	QUnit.test('Проверка при входном значении undefined', function (assert) {
-		const input = undefined;
-
-		const output = [];
-
-		assert.deepEqual(anagram(input), output);
+	QUnit.test('Проверка при крайних значениях', function (assert) {
+		assert.deepEqual(anagram(null), []);
+		assert.deepEqual(anagram('null'), []);
+		assert.deepEqual(anagram([]), []);
+		assert.deepEqual(anagram([null]), []);
+		assert.deepEqual(anagram(undefined), []);
+		// не навязываем функционал, только со строками работает, остальное фильтруем
+		assert.deepEqual(anagram([123123, 132123]), []);
+		assert.deepEqual(anagram([123123, false, true, false]), []);
+		assert.deepEqual(anagram(() => alert('oops')), []);
+		assert.deepEqual(anagram({}, {}, []), []);
+		assert.deepEqual(anagram([{}, {}, 'string']), []);
+		assert.deepEqual(anagram([{}, {}, 'string', 'string']), [['string', 'string']]);
+		assert.deepEqual(anagram([() => alert('oops'), () => alert('oops')]), []);
 	});
 });

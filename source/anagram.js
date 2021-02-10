@@ -48,5 +48,9 @@ const filterAndSortAnagrams = (acc, el) => {
  */
 const anagram = (words) =>
     Array.isArray(words)
-        ? words.reduce(getAnagramArr, [[], new Map()])[0].reduce(filterAndSortAnagrams, []).sort(strSort)
+        ? words
+            .filter(el => typeof(el) === 'string')
+            .reduce(getAnagramArr, [[], new Map()])[0]
+            .reduce(filterAndSortAnagrams, [])
+            .sort(strSort)
         : [];
